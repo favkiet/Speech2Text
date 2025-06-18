@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: .
+      args:
+        - MODEL_NAME=${MODEL_NAME:-large-v3-turbo}
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./uploads:/app/uploads
+      - ./output:/app/output
+    environment:
+      - WHISPER_PATH=/app/whisper.cpp
+      - WHISPER_CLI=/app/whisper.cpp/build/bin/whisper-cli
+      - MODEL_NAME=${MODEL_NAME:-large-v3-turbo}
+      - MODEL_PATH=/app/whisper.cpp/models/ggml-${MODEL_NAME}.bin
+      - UPLOAD_DIR=/app/uploads
+      - OUTPUT_DIR=/app/output
+    restart: unless-stopped 
