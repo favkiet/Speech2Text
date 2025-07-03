@@ -200,6 +200,7 @@ marimo/_static/
 marimo/_lsp/
 __marimo__/
 
+log/
 .DS_Store
 my_audio_files
 notebooks
